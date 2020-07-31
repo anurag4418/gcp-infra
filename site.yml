@@ -1,0 +1,3 @@
+- import_playbook: gcpinfra.yml
+- import_playbook: httpd-gcp.yml
+- import_playbook: gcp-networking.yml

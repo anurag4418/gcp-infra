@@ -1,0 +1,22 @@
+- name: Set-up httpd on webservers
+  hosts: web_servers
+  vars:
+    ansible_ssh_private_key_file: /home/anurag_junghare/.ssh/google_compute_engine
+    ansible_user: anurag.junghare 
+  become: yes
+  become_method: sudo
+  connection: ssh  
+  
+  tasks:
+   - name: ensure apache is at the latest version
+     yum: name=httpd state=latest
+
+   - name: Create default index page
+     copy:
+       dest: /var/www/html/index.html
+       content: "Hello from {{ ansible_hostname }}"
+
+   - name: Restart httpd
+     service:
+       name: httpd
+       state: restarted    

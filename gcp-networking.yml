@@ -1,0 +1,25 @@
+- name: Setup Load-balancer and ports
+  hosts: localhost
+  gather_facts: False
+  tasks: 
+
+    - name: Create the load-balancer 
+      gce_lb:
+        name: "{{ gcpinfra_lb_name }}"
+        region: "{{ gcpinfra_region }}"
+        members: "{{ gcpinfra_web_servers }}"
+        project_id: "{{ gcpinfra_project }}"
+        credentials_file: "{{ gcpinfra_cred_file }}"
+        service_account_email: "{{ gcpinfta_service_account_email }}" 
+        httphealthcheck_name: "{{ gcpinfra_healthcheck }}"
+        httphealthcheck_port: 80
+        httphealthcheck_path: "/"        
+      register: myweb_lb_result    
+
+    - name: Load balancer details
+      debug:
+        msg: "{{ myweb_lb_result }}"
+
+    - name: Load balancer ip
+      debug:
+        msg: "Access load balancer at http://{{ myweb_lb_result.external_ip }}  "  
