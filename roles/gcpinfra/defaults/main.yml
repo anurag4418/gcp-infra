@@ -1,8 +1,7 @@
-gcpinfra_project: ansible-274712
-gcpinfra_cred_kind: serviceaccount
+gcpinfra_project: "{{ gcpinfra_project }}"
+gcpinfra_cred_kind: "{{ gcpinfra_cred_kind }}"
 gcpinfra_cred_file: "/tmp/ansible-service-account.json"
-gcpinfta_service_account_email: "service_account_emailhttps://console.cloud.google.com/iam-admin/serviceaccounts/details/107346728873007512049?project=ansible-274712"
-
+gcpinfta_service_account_email: "{{ gcpinfta_service_account_email }}"
 gcpinfra_zone: "us-central1-c"
 gcpinfra_region: "us-central1"
 gcpinfra_web_servers: us-central1-c/webserver1,us-central1-c/webserver2
